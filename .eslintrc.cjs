@@ -1,11 +1,10 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'import'],
-  extends: ['eslint:recommended', 'airbnb', 'plugin:react/recommended', 'plugin:prettier/recommended'],
+  extends: ['plugin:tailwindcss/recommended', 'eslint:recommended', 'airbnb', 'plugin:react/recommended', 'plugin:prettier/recommended'],
   env: { browser: true, node: true },
   rules: {
     'react/react-in-jsx-scope': 'off',
-    '@typescript-eslint/no-unused-vars': 'warn',
     'no-unused-vars': 'off',
     'import/extensions': [
       'error',
@@ -32,9 +31,40 @@ module.exports = {
         bracketSpacing: true,
       },
     ],
+
+    // myconfig
+    'no-param-reassign': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        ignoreRestSiblings: true,
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+        caughtErrors: 'none',
+        destructuredArrayIgnorePattern: '^_',
+      },
+    ],
+    'react/function-component-definition': [
+      'error',
+      {
+        namedComponents: 'arrow-function', // Bắt buộc dùng arrow function
+        unnamedComponents: 'arrow-function',
+      },
+    ],
   },
   settings: {
     react: { version: 'detect' },
-    'import/resolver': { node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] } },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+      typescript: {
+        alwaysTryTypes: true,
+      },
+      alias: {
+        map: [['@', './src']],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+      },
+    },
   },
 }
