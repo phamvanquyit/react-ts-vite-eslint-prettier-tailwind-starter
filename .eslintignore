@@ -1,0 +1,7 @@
+tsconfig.json
+tailwind.config.js
+craco.config.js
+extract-tailwind-variables.js
+commitlint.config.js
+.husky/pre-commit
+.husky/pre-push
